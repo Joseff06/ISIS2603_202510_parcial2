@@ -65,7 +65,6 @@ export class CandidatosListComponent implements OnInit {
   }
 
   seleccionarCandidato(candidato: any) {
-    // Navega al detalle del candidato usando su id
-    this.router.navigate(['/candidatos', candidato.id]);
+    this.router.navigate(['/candidatos', candidato.id]); 
   }
 }
