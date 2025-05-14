@@ -1,13 +1,15 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CandidatosService } from '../candidato.service';
 
 @Component({
   selector: 'app-candidatos-list',
-  standalone: false,
   templateUrl: './candidatos-list.component.html',
-  styleUrl: './candidatos-list.component.css'
+  standalone: false,
+  styleUrls: ['./candidatos-list.component.css']
 })
 export class CandidatosListComponent implements OnInit {
-  candidatos = [
+   candidatos = [
     {
       id: 1,
       nombre: "Cardenal Pietro Parolin",
@@ -49,19 +51,21 @@ export class CandidatosListComponent implements OnInit {
       foto: "https://upload.wikimedia.org/wikipedia/commons/5/57/Louis_Rapha%C3%ABl_I_Sako_November_2015.jpg"
     }
   ];
+  
+  proximoPapa: any = null;
 
-  @Output() candidatoSeleccionado = null
-  seleccionado = false;
-
-  seleccionarCandidato(candidato: any) {
-    this.candidatoSeleccionado = candidato;
-    console.log(this.candidatoSeleccionado);
-    this.seleccionado = true;
-  }
-
-  constructor() { }
+  constructor(private CandidatosService: CandidatosService, private router: Router) { }
 
   ngOnInit(): void {
-      
+    
+    if (this.candidatos.length > 0) {
+      const randomIndex = Math.floor(Math.random() * this.candidatos.length);
+      this.proximoPapa = this.candidatos[randomIndex];
+    }
+  }
+
+  seleccionarCandidato(candidato: any) {
+    // Navega al detalle del candidato usando su id
+    this.router.navigate(['/candidatos', candidato.id]);
   }
 }

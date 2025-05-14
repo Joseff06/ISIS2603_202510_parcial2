@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CandidatosListComponent } from './candidatos-list/candidatos-list.component';
 import { CandidatosDetailComponent } from './candidatos-detail/candidatos-detail.component';
-
-
+import { RouterModule } from '@angular/router'; // Importa RouterModule para manejar rutas
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -11,11 +11,13 @@ import { CandidatosDetailComponent } from './candidatos-detail/candidatos-detail
     CandidatosDetailComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule ,// Asegúrate de importar RouterModule para manejar rutas
+    HttpClientModule // Asegúrate de importar HttpClientModule para hacer peticiones HTTP
   ],
   exports: [
-    CandidatosListComponent
+    CandidatosListComponent,
+    CandidatosDetailComponent // Exporta ambos componentes si se usan fuera del módulo
   ]
-
 })
 export class CandidatosModule { }

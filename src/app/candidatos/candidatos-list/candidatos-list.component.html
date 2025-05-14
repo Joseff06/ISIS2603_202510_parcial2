@@ -1,26 +1,22 @@
-<div class="container">
-    <h1 class="mt-4">Candidatos a Papa - 2025</h1>
-
-    <table class="table table-bordered mt-4">
-        <thead>
-            <tr style="--bs-table-bg: #C41E3A; --bs-table-color: white;">
-                <th scope="col">Nombre</th>
-                <th scope="col">Foto</th>
-                <th scope="col">Pais Origen</th>
-                <th scope="col">Edad</th>
-                <th scope="col">Vertiente Religiosa</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let candidato of candidatos" (click)="seleccionarCandidato(candidato)">
-                <td>{{ candidato.nombre }}</td>
-                <td><img [src]="candidato.foto" alt="{{ candidato.nombre }}" style="width: 50px; height: auto;"></td>
-                <td>{{ candidato.pais_origen }}</td>
-                <td>{{ candidato.edad }} años</td>
-                <td>{{ candidato.vertiente_religiosa }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <app-candidatos-detail *ngIf="candidatoSeleccionado" [candidato]="candidatoSeleccionado"></app-candidatos-detail>
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Candidatos a Papa - 2025</h1>
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let candidato of candidatos">
+      <div class="card h-100">
+        <img [src]="candidato.foto" class="card-img-top" [alt]="candidato.nombre">
+        <div class="card-body">
+          <h5 class="card-title">{{ candidato.nombre }}</h5>
+          <p class="card-text">
+            <strong>País:</strong> {{ candidato.pais_origen }}<br>
+            <strong>Edad:</strong> {{ candidato.edad }} años
+          </p>
+          <button class="btn btn-primary w-100" (click)="seleccionarCandidato(candidato)">
+            Ver Detalle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
